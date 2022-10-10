@@ -92,7 +92,7 @@ class App extends Component {
         <Container maxWidth="md" style={{marginTop:"250px"}}>
           {title}
         {/* {searchDiv}   */}
-          <SearchComs/>
+          <SearchComs type="VGA" keyword=""/>
         </Container>
         
       </div>

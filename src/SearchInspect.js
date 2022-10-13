@@ -12,7 +12,6 @@ export default function SearchInspect() {
         call("/auth/modify","GET",null)
             .then((response)=> {
                 response.token = localStorage.getItem("ACCESS_TOKEN");
-                console.log(response);
                 setUser(response);
             });
     },[])
@@ -34,20 +33,50 @@ export default function SearchInspect() {
           </Toolbar>
         </AppBar>
       )
-    console.log(location.state.comId);
-    console.log(data);
+      var compareSave = (e) => {
+        call("/compare/save","POST",data[0]).then((response)=>{
+          if(response.data) {
+            alert("등록완료");
+            window.location.href="/";
+          }
+        });
+      }
   return (
     <div>
         {navigationBar}
-        {data.map((element,idx) => {
-        return (
-        <div>
-            <img src={element.imgUrl} width={300} height={300}/>
-            <p>{element.name}</p>
-            <p>{element.spec}</p>
-            <p>{element.price}</p>
-        </div>
-        )
-    })}</div>
+        <Container maxWidth={"lg"}>
+          {data.map((element,idx) => {
+          return (
+          <Paper style={{marginTop: "100px"}} elevation={12}>
+            <Grid container>
+              <Grid item xs={3} style={{padding:"25px"}}>
+                {element.imgUrl === "https:" ? <img src="https://img.danawa.com/new/noData/img/noImg_130.gif" width={250} height={250}></img>:<img src={element.imgUrl} width={250} height={250}></img>}
+              </Grid>
+              <Grid item xs={9}>
+                <h1 style={{padding:"25px"}}>{element.name}</h1>
+                <hr style={{paddingLeft:"25px"}}/>
+                <p style={{padding:"25px"}}><strong>{element.spec}</strong></p>
+                <h2 style={{alignItems:"right",justifyContent:"right",textAlign:"right",paddingRight:"25px"}}>가격 : {element.price}원</h2>
+                
+              </Grid>
+            </Grid>
+            <hr/>
+            <Grid container style={{marginTop:"10px",marginBottom:"10px",padding:"5px"}}>
+              <Grid xs={5}>
+                <Button color="primary" variant="contained" fullWidth style={{padding:"10px"}}>
+                  <a href={element.originalUrl} style={{textDecoration:"none",color:"white"}}>
+                    <h1>판매자 사이트 이동</h1>
+                  </a>
+                </Button>
+              </Grid>
+              <Grid xs={2}></Grid>
+              <Grid xs={5}>
+                <Button color="primary" variant='outlined' fullWidth style={{padding:"10px"}} onClick={compareSave}><h1>비교상품 등록</h1></Button>
+              </Grid>
+            </Grid>
+          </Paper>
+          )
+        
+    })}</Container></div>
   )
 }

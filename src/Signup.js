@@ -60,6 +60,7 @@ export class Signup extends Component {
                                 fullWidth
                                 id="password"
                                 label="패스워드"
+                                type="password"
                                 name="password"
                                 autoComplete='password'
                             />

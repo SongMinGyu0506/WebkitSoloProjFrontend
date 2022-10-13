@@ -16,12 +16,9 @@ function SearchCustom(props) {
         call("/auth/modify","GET",null)
             .then((response)=> {
                 response.token = localStorage.getItem("ACCESS_TOKEN");
-                console.log(response);
                 setUser(response);
             });
     },[])
-    console.log(type,keyword);
-    console.log(data);
     var navigationBar = (
         <AppBar position="static">
           <Toolbar>
@@ -34,7 +31,7 @@ function SearchCustom(props) {
               <Grid item>
                 반갑습니다. {user.name} 님 &nbsp;
                 <Button color='inherit'>logout</Button>
-                <Button component={Link} to="/usermodify" color="inherit"> 정보 수정 </Button>
+                <Button component={Link} to="/usermodify" color="inherit"> 개인정보 관리 </Button>
               </Grid>
             </Grid>
           </Toolbar>
@@ -44,7 +41,8 @@ function SearchCustom(props) {
         <div>
             {navigationBar}
             <Container maxWidth={"md"}>
-                <SearchComs type={type} keyword={keyword}/>
+                <h1 style={{marginBottom:"50px"}}>{keyword} 검색결과</h1>
+                {/* <SearchComs type={type} keyword={keyword}/> */}
                 {
                     data.map((element,idx)=> {
                         if(!element.price == "" || !element.price == "가격비교예정") {

@@ -19,8 +19,8 @@ class App extends Component {
     call("/auth/modify","GET",null)
             .then((response)=> {
                 response.token = localStorage.getItem("ACCESS_TOKEN");
-                console.log(response);
                 this.setState({users:response});
+                console.log(this.state.users);
             });
   }
   render() {
@@ -34,7 +34,7 @@ class App extends Component {
             <Grid item>
               반갑습니다. {this.state.users.name} 님 &nbsp;
               <Button color='inherit' onClick={signout}>logout</Button>
-              <Button component={Link} to="/usermodify" color="inherit"> 정보 수정 </Button>
+              <Button component={Link} to="/usermodify" color="inherit"> 개인정보 관리 </Button>
             </Grid>
           </Grid>
         </Toolbar>
@@ -105,9 +105,7 @@ class App extends Component {
     }
     return (
       <div>
-        <p>
-          {content}
-        </p>
+        {content}
       </div>
     )
   }

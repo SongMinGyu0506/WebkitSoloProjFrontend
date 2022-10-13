@@ -10,23 +10,28 @@ class SearchComs extends Component {
       type: this.props.type,
       keyword: this.props.keyword
     }
+    this.myRef = React.createRef();
     this.onSelectChangeCustom = this.onSelectChangeCustom.bind(this);
     this.onTextFieldChange = this.onTextFieldChange.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
+    this.onEnterEvent = this.onEnterEvent.bind(this);
   }
   onSelectChangeCustom(event) {
     this.setState({type:event.target.value});
-    console.log(this.state.type);
   }
   onTextFieldChange(event) {
     this.setState({keyword:event.target.value});
-    console.log(this.state.keyword);
   }
   onButtonClick(event) {
     window.location.href = "/search"
   }
+  onEnterEvent(event) {
+    if(event.key === 'Enter') {
+      const el = document.getElementById('test');
+      el.click();
+    }
+  }
   render() {
-    console.log(this.state.keyword);
     return (
       <div>
         <Paper style={{margin:16, padding: 16}}>
@@ -45,11 +50,11 @@ class SearchComs extends Component {
               </Select>
             </Grid>
             <Grid xs={9} md={9} item style={{paddingRight:16}}>
-              <TextField placeholder="Search Computer" fullWidth onChange={this.onTextFieldChange} value={this.state.keyword}/>
+              <TextField placeholder="Search Computer" fullWidth onChange={this.onTextFieldChange} onKeyPress={this.onEnterEvent} value={this.state.keyword}/>
             </Grid>
             <Grid xs={2} md={2} item>
               <Link to={`/search`} state={{type:this.state.type, keyword:this.state.keyword}}>
-                <Button fullWidth color="primary" variant="contained" endIcon={<SearchIcon/>}>SEARCH</Button>
+                <Button id="test" fullWidth color="primary" variant="contained" endIcon={<SearchIcon/>}>SEARCH</Button>
               </Link>
             </Grid>
           </Grid>

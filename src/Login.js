@@ -33,6 +33,7 @@ class Login extends React.Component {
                                 variant='outlined'
                                 required
                                 fullWidth
+                                type="email"
                                 id="email"
                                 label="이메일 주소"
                                 name='email'
@@ -44,6 +45,7 @@ class Login extends React.Component {
                                 variant='outlined'
                                 required
                                 fullWidth
+                                type="password"
                                 id="password"
                                 label="패스워드"
                                 name="password"

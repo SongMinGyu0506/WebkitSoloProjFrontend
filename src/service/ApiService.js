@@ -67,8 +67,9 @@ export function signup(userDTO) {
 }
 
 export function signout() {
+    call("/auth/signout","GET",null).then((response)=>console.log("SIGN-OUT"));
     localStorage.setItem("ACCESS_TOKEN",null);
-    window.location.href="/";
+    window.location.href="/login";
 }
 
 export function userModify(userDTO) {

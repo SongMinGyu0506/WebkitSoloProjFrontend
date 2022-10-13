@@ -6,6 +6,7 @@ import Login from "./Login";
 import SearchCustom from './SearchCustom';
 import Signup from './Signup';
 import SearchInspect from './SearchInspect';
+import UserInfo from './UserInfo';
 // import UserModify from './UserModify';
 function Copyright() {
     return (
@@ -28,6 +29,7 @@ export default class AppRouter extends Component {
                 <Route path="/" element={<App />} />
                 <Route path="/search" element={<SearchCustom/>}/>
                 <Route path="/search/inspect" element={<SearchInspect/>}/>
+                <Route path="/usermodify" element={<UserInfo/>}/>
                 {/* <Route path="/usermodify" element={<UserModify/>}/> */}
             </Routes>
         </div>
